@@ -1,0 +1,122 @@
+// My main Sass file.
+$mdc-theme-primary: #000;
+$mdc-theme-secondary: rgb(24, 26, 27);
+$mdc-theme-background: #fff;
+
+@import "material-components-web/material-components-web";
+
+.NewGist,
+.Stash {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+
+.NewGist {
+  background: $mdc-theme-secondary;
+  color: $mdc-theme-background;
+}
+
+.Stash {
+  background: $mdc-theme-background;
+  color: $mdc-theme-secondary;
+}
+
+.Editor {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: auto;
+  height: 100%;
+  width: 90%;
+  background: $mdc-theme-secondary;
+  overflow: auto;
+  padding: 0 5%;
+}
+
+.react-monaco-editor-container {
+  position: fixed;
+}
+
+/*
+.App {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.App-header {
+  text-align: center;
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.GistList {
+  font-size: large;
+  text-align: left;
+}
+*/
+
+/*
+.Editor {
+  margin: 50px;
+}
+
+.z {
+  color: black;
+}
+*/
+/*
+.raw {
+  color: "rgba(36, 41, 46, 0.5)",
+  fontFamily: "monospace",
+  borderStyle: "solid",
+  borderWidth: 2,
+  borderColor: "rgb(221, 221, 221)",
+  borderRadius: 6,
+  padding: 10,
+  maxHeight: 500
+}
+
+.markdown {
+  borderStyle: "solid",
+  borderWidth: 2,
+  borderColor: "rgb(221, 221, 221)",
+  borderRadius: 6,
+  padding: 10
+}
+
+.input {
+  backgroundColor: "rgb(36, 41, 46)",
+  color: "#fff",
+  fontFamily: "Menlo",
+  fontSize: 18,
+  lineHeight: 20,
+  padding: 20
+}
+
+.gist {
+  color: "rgba(36, 41, 46, 0.75)",
+  fontFamily: "Helvetica",
+  fontSize: 24,
+  lineHeight: 36,
+  fontWeight: "normal",
+  marginTop: 20
+}
+
+.file {
+  color: "rgb(3, 102, 214)",
+  fontFamily: "Helvetica",
+  fontSize: 28,
+  fontWeight: "bold",
+  lineHeight:42,
+}
+
+/// color="#cb2431"  button color
+
+*/
