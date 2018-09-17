@@ -7,7 +7,7 @@ import "./App.css"
 const USERNAME = "yvan-sraka"
 const TOKEN = "9d5e442ee1cac5bad6af83b8fa91211fb25c0cae"
 const HEADERS = new Headers({
-  "Authorization": `token ${TOKEN}`, 
+  "Authorization": `token ${TOKEN}`,
   "Content-Type": "application/x-www-form-urlencoded"
 });
 
@@ -38,7 +38,7 @@ const File = (props) =>
 const FileView = (props) =>
   props._[0].substr(props._[0].length - 3).toLowerCase() === ".md" ?
     <MD url={props._[0]} /> : <Code url={props._[0]} />
-  
+
 class Raw extends Component {
   constructor(props) {
     super(props)
@@ -66,30 +66,28 @@ class Raw extends Component {
 }
 
 class Code extends Raw {
-  editorDidMount(editor, monaco) {
-    console.log('editorDidMount', editor);
-    editor.focus();
-  }
+
   render() {
     const options = {
       selectOnLineNumbers: true,
       minimap: {
         enabled: false
       }
-    };
+    }
 
-    return (
+    return <div>
       <MonacoEditor
         className="MonacoEditor"
-        width="320"
-        height="568"
         theme="vs-dark"
         value={this.state.dataSource}
         options={options}
-        onChange={(value) => this.setState({dataSource: value})}
-        editorDidMount={this.editorDidMount}
+        onChange={(value) => this.setState({ dataSource: value })}
       />
-    );
+      <button className="Stash mdc-fab mdc-fab--extended">
+        <span className="material-icons mdc-fab__icon">save</span>
+        <span className="mdc-fab__label">Stash</span>
+      </button>
+    </div>
   }
 }
 
@@ -114,16 +112,16 @@ class MD extends Raw {
     */
 
     return <div>
-        {this.state.dataSource ?
+      {this.state.dataSource ?
         <Editor className="Editor" defaultValue={this.state.dataSource}
-          onChange={(callback) => this.setState({dataSource: callback()})}
+          onChange={(callback) => this.setState({ dataSource: callback() })}
           autoFocus={true} dark={true} />
         : <div className="Editor" />}
-        <button className="Stash mdc-fab mdc-fab--extended">
-          <span className="material-icons mdc-fab__icon">save</span>
-          <span className="mdc-fab__label">Stash</span>
-        </button>
-      </div>
+      <button className="Stash mdc-fab mdc-fab--extended">
+        <span className="material-icons mdc-fab__icon">save</span>
+        <span className="mdc-fab__label">Stash</span>
+      </button>
+    </div>
 
     /*
       <button className="Button" onClick={() =>
@@ -138,7 +136,7 @@ class MainView extends Component {
     super(props)
     this.state = { dataSource: [] }
 
-    fetch(`https://api.github.com/users/${USERNAME}/gists`, { 
+    fetch(`https://api.github.com/users/${USERNAME}/gists`, {
       method: "GET",
       headers: HEADERS
     }).then((response) => response.json())
@@ -153,21 +151,23 @@ class MainView extends Component {
     */
 
     const deleteGist = (id) =>
-      fetch(`https://api.github.com/gists/${id}`, { 
+      fetch(`https://api.github.com/gists/${id}`, {
         method: "DELETE",
         headers: HEADERS
       }).then(() =>
-        this.setState({ dataSource: this.state.dataSource.filter(item =>
-          item.id !== id) }))
+        this.setState({
+          dataSource: this.state.dataSource.filter(item =>
+            item.id !== id)
+        }))
 
     return (
       <div className="App">
         <GistList className="GistList"
           {...this.state} deleteGist={(id) => deleteGist(id)} />
-          <button className="NewGist mdc-fab mdc-fab--extended">
-            <span className="material-icons mdc-fab__icon">edit</span>
-            <span className="mdc-fab__label">New Gist</span>
-          </button>
+        <button className="NewGist mdc-fab mdc-fab--extended">
+          <span className="material-icons mdc-fab__icon">edit</span>
+          <span className="mdc-fab__label">New Gist</span>
+        </button>
       </div>
     )
   }
